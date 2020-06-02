@@ -1,0 +1,10 @@
+*.pdb
+*.suo
+*.user
+bin
+obj
+.svn
+.vs
+
+log
+*.pubxml
