@@ -5,15 +5,15 @@ namespace Tom.Lib.Token
     public abstract class AbstractToken: IToken
     {
         // 过期间隔
-        private readonly TimeSpan expiredSpan = TimeSpan.FromMinutes(30);
+        protected readonly TimeSpan expiredSpan = TimeSpan.FromMinutes(30);
         // 过期时间
-        private DateTime expiredTime => DateTime.Now.Add(expiredSpan);
+        protected DateTime expiredTime => DateTime.Now.Add(expiredSpan);
         // 提前过期时间
-        private DateTime preExpiredTime => expiredTime.AddMinutes(-1);
-        private bool isExpired => DateTime.Now > preExpiredTime;
+        protected DateTime preExpiredTime => expiredTime.AddMinutes(-1);
+        protected bool isExpired => DateTime.Now > preExpiredTime;
 
         // token
-        private string token;
+        protected string token;
         /// <summary>
         /// 获取token
         /// </summary>
