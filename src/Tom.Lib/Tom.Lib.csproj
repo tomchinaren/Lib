@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,10 +44,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HttpClientProxy\DefaultAPIClient.cs" />
+    <Compile Include="HttpClientProxy\IAPIClient.cs" />
+    <Compile Include="HttpClientProxy\IRequest.cs" />
+    <Compile Include="HttpClientProxy\Response.cs" />
     <Compile Include="JobHandler\SimpleJobHandler.cs" />
     <Compile Include="JobHandler\BatchJobHandler.cs" />
     <Compile Include="JobHandler\IJobHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tasks\TaskSpliter.cs" />
     <Compile Include="Token\AbstractToken.cs" />
     <Compile Include="Token\AbstractKeyToken.cs" />
     <Compile Include="Token\IKeyToken.cs" />
@@ -52,6 +60,8 @@
     <Compile Include="Token\TokenProxy.cs" />
     <Compile Include="Token\KeyTokenProxy.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
