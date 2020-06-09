@@ -30,6 +30,7 @@ namespace Tom.Lib.Tasks
                     var obj = tmodels;
                     action(obj);
                 });
+                tasks.Add(task);
             }
 
             Task.WaitAll(tasks.ToArray());
