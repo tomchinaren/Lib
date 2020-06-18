@@ -51,6 +51,8 @@
     <Compile Include="JobHandler\SimpleJobHandler.cs" />
     <Compile Include="JobHandler\BatchJobHandler.cs" />
     <Compile Include="JobHandler\IJobHandler.cs" />
+    <Compile Include="Loggers\ILogger.cs" />
+    <Compile Include="Loggers\LogUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tasks\TaskSpliter.cs" />
     <Compile Include="Token\AbstractToken.cs" />

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +18,6 @@ namespace Tom.Lib.Tasks
 
             // 拆分models到各task
             var splitedModels = SplitModels(taskCount, models);
-
             if (splitedModels.Count == 0)
             {
                 return;
@@ -35,7 +35,38 @@ namespace Tom.Lib.Tasks
 
             Task.WaitAll(tasks.ToArray());
         }
-         
+
+        public static List<TOut> Run<T, TOut>(int taskCount, List<T> models, Func<List<T>, TOut> func)
+        {
+            if (taskCount <= 0)
+            {
+                throw new Exception($"taskCount有误:{taskCount}");
+            }
+
+            // 拆分models到各task
+            var splitedModels = SplitModels(taskCount, models);
+            if (splitedModels.Count == 0)
+            {
+                return null;
+            }
+
+            var tasks = new List<Task>();
+            var resluts = new ConcurrentBag<TOut>();
+            foreach (var tmodels in splitedModels)
+            {
+                var task = Task.Run(() =>
+                {
+                    var obj = tmodels;
+                    var flag = func(obj);
+                    resluts.Add(flag);
+                });
+                tasks.Add(task);
+            }
+
+            Task.WaitAll(tasks.ToArray());
+            return resluts.ToList();
+        }
+
         protected static List<List<T>> SplitModels<T>(int taskCount, List<T> models)
         {
             var splitedModels = new List<List<T>>();
@@ -47,8 +78,8 @@ namespace Tom.Lib.Tasks
             // 每task要运行的model数量
             var perCount = models.Count / taskCount;
 
-            // 最后一个task的model数量（有余则取余，无余取平均）
-            var lastCount = (models.Count % taskCount > 0 ? models.Count % taskCount : perCount);
+            // 最后一个task的model数量加上余数
+            var lastCount = perCount + (models.Count % taskCount);
 
             if (perCount == 0 && lastCount == 0)
             {
@@ -78,4 +109,5 @@ namespace Tom.Lib.Tasks
             return splitedModels;
         }
     }
+
 }

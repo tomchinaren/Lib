@@ -23,18 +23,33 @@ namespace Tom.Lib.Test
         }
 
         [TestMethod]
-        public void TestMethod1()
+        public void TestMethod_StringResult()
         {
             var users = GetUsers();
-
+            var taskCount = 10;
             var allHandDocs = new ConcurrentBag<List<string>>();
 
-            Tasks.TaskSpliter.Run<User>(10, users, t => {
+            Tasks.TaskSpliter.Run<User>(taskCount, users, t => {
                 allHandDocs.Add(users.Select(s => $"{s.Id}.{s.Name}").ToList());
             });
 
-            Assert.IsTrue(allHandDocs.Count == 10);
+            Assert.IsTrue(allHandDocs.Count == taskCount);
             Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(allHandDocs));
+        }
+
+        [TestMethod]
+        public void TestMethod_AllTrue()
+        {
+            var users = GetUsers();
+            var taskCount = 10;
+            var boolResults = new ConcurrentBag<bool>();
+
+            Tasks.TaskSpliter.Run<User>(taskCount, users, t => {
+                boolResults.Add(t.Count > 0);
+            });
+
+            Assert.IsTrue(boolResults.Count(t=>t) == taskCount);
+            Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(boolResults));
         }
 
         [TestMethod]
