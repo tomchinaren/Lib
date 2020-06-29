@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Tom.Lib.Clusters;
 using Tom.Lib.Test.Utils;
 
 namespace Tom.Lib.Test
@@ -73,5 +74,6 @@ namespace Tom.Lib.Test
 
             Assert.IsTrue(allHandDocs.Count == 0);
         }
+
     }
 }
