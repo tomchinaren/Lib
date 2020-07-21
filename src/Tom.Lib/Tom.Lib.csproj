@@ -59,7 +59,6 @@
     <Compile Include="Observers\DefaultObservable.cs" />
     <Compile Include="Observers\IDequeuable.cs" />
     <Compile Include="Observers\TaskObserver.cs" />
-    <Compile Include="Observers\DemoUserSet.cs" />
     <Compile Include="Observers\IReader.cs" />
     <Compile Include="Observers\ObserverTaskRunner.cs" />
     <Compile Include="Po\User.cs" />

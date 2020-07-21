@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Threading;
 
 namespace Tom.Lib.Observers
 {
@@ -18,7 +19,7 @@ namespace Tom.Lib.Observers
         // 订阅者（仅一个订阅者）
         TaskObserver<TMessage> observer;
 
-        // 数据读取器 
+        // 数据读取器
         IReader<TMessage> reader;
 
         /// <summary>
@@ -47,7 +48,14 @@ namespace Tom.Lib.Observers
             while (true)
             {
                 // 获取下一批消息
-                var message = reader.ReadNext();
+                var hasMessage = reader.ReadNext(out var message);
+
+                // 没有消息，等待并再次尝试取消息
+                if (!hasMessage)
+                {
+                    Thread.Sleep(1000);
+                    continue;
+                }
 
                 // 消息入列
                 messageQueue.Enqueue(message);

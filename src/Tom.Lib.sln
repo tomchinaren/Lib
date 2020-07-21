@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tom.Lib", "Tom.Lib\Tom.Lib.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tom.Lib.Test", "Tom.Lib.Test\Tom.Lib.Test.csproj", "{8C906E54-C34D-419E-B711-F15DE93DCEEF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tom.Lib.Console", "Tom.Lib.Console\Tom.Lib.Console.csproj", "{6823D011-8D57-4F0A-B13D-A0F353D3F5BD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tom.Lib.ConsoleTest", "Tom.Lib.Console\Tom.Lib.ConsoleTest.csproj", "{6823D011-8D57-4F0A-B13D-A0F353D3F5BD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -2,6 +2,6 @@
 {
     public interface IReader<TData>
     {
-        TData ReadNext();
+        bool ReadNext(out TData data);
     }
 }
