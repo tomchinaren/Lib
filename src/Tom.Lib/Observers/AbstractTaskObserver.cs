@@ -4,19 +4,19 @@ using System.Threading.Tasks;
 
 namespace Tom.Lib.Observers
 {
-    public abstract class TaskObserver<TMessage> : IObserver<TMessage>
+    public abstract class AbstractTaskObserver<TMessage> : IObserver<TMessage>
     {
         Task task;
         IDequeuable<TMessage> dequeuable;
 
-        public TaskObserver()
+        public AbstractTaskObserver()
         {
 
             Run();
         }
 
         /// <summary>
-        /// 设置订阅者出列
+        /// 设置订阅者可出列对象
         /// </summary>
         /// <param name="dequeuable"></param>
         public void SetDequeuable(IDequeuable<TMessage> dequeuable)

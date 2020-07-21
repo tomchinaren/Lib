@@ -12,7 +12,7 @@ namespace Tom.Lib.ConsoleTest
         public static void Run()
         {
             DefaultObservable<User> observable = new DefaultObservable<User>();
-            TaskObserver<User> observer = new DemoTaskObserver();
+            AbstractTaskObserver<User> observer = new DemoTaskObserver();
             IReader<User> reader = new DemoReader();
             var runner = new ObserverTaskRunner<User>(observable, observer, reader);
 
@@ -20,7 +20,7 @@ namespace Tom.Lib.ConsoleTest
             runner.Run();
         }
 
-        private class DemoTaskObserver : TaskObserver<User>
+        private class DemoTaskObserver : AbstractTaskObserver<User>
         {
             protected override void HandleData(User data)
             {

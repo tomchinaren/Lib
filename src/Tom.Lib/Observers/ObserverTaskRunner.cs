@@ -11,13 +11,13 @@ namespace Tom.Lib.Observers
     public class ObserverTaskRunner<TMessage> : IDequeuable<TMessage>
     {
         // 消息队列
-        ConcurrentQueue<TMessage> messageQueue;
+        ConcurrentQueue<TMessage> messageQueue = new ConcurrentQueue<TMessage>();
 
         // 可被订阅的subject
         IObservable<TMessage> observable;
 
         // 订阅者（仅一个订阅者）
-        TaskObserver<TMessage> observer;
+        AbstractTaskObserver<TMessage> observer;
 
         // 数据读取器
         IReader<TMessage> reader;
@@ -25,9 +25,8 @@ namespace Tom.Lib.Observers
         /// <summary>
         /// 构造函数
         /// </summary>
-        public ObserverTaskRunner(IObservable<TMessage> observable, TaskObserver<TMessage> observer, IReader<TMessage> reader)
+        public ObserverTaskRunner(IObservable<TMessage> observable, AbstractTaskObserver<TMessage> observer, IReader<TMessage> reader)
         {
-            this.messageQueue = new ConcurrentQueue<TMessage>();
             this.observable = observable;
             this.observer = observer;
             this.reader = reader;
@@ -35,7 +34,7 @@ namespace Tom.Lib.Observers
             // 订阅
             this.observable.Subscribe(observer);
 
-            // 设置订阅者出列
+            // 设置订阅者可出列对象
             observer.SetDequeuable(this);
         }
 
@@ -80,5 +79,18 @@ namespace Tom.Lib.Observers
         }
 
 
+    }
+
+
+
+    public interface IReader<TData>
+    {
+        bool ReadNext(out TData data);
+    }
+
+
+    public interface IDequeuable<T>
+    {
+        bool TryDequeue(out T message);
     }
 }

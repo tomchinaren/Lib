@@ -56,10 +56,9 @@
     <Compile Include="JobHandler\IJobHandler.cs" />
     <Compile Include="Loggers\ILogger.cs" />
     <Compile Include="Loggers\LogUtil.cs" />
+    <Compile Include="ObserversV2\AbstractThinking.cs" />
     <Compile Include="Observers\DefaultObservable.cs" />
-    <Compile Include="Observers\IDequeuable.cs" />
-    <Compile Include="Observers\TaskObserver.cs" />
-    <Compile Include="Observers\IReader.cs" />
+    <Compile Include="Observers\AbstractTaskObserver.cs" />
     <Compile Include="Observers\ObserverTaskRunner.cs" />
     <Compile Include="Po\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
