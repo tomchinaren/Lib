@@ -56,7 +56,9 @@
     <Compile Include="JobHandler\IJobHandler.cs" />
     <Compile Include="Loggers\ILogger.cs" />
     <Compile Include="Loggers\LogUtil.cs" />
-    <Compile Include="ObserversV2\AbstractThinking.cs" />
+    <Compile Include="ObserversV2\AbstractObserverTaskRunner.cs" />
+    <Compile Include="ObserversV2\AbstractTaskObserver.cs" />
+    <Compile Include="ObserversV2\DefaultObservable.cs" />
     <Compile Include="Observers\DefaultObservable.cs" />
     <Compile Include="Observers\AbstractTaskObserver.cs" />
     <Compile Include="Observers\ObserverTaskRunner.cs" />
